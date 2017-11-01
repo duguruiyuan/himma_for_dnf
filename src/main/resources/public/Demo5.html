@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello Vue</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+
+<!--列表-->
+<body>
+<div id="app"></div>
+
+
+<script>
+    const NotFound = { template: '<p>Page not found</p>' }
+    const Home = { template: '<p>home page</p>' }
+    const About = { template: '<p>about page</p>' }
+
+    const routes = {
+        '/': Home,
+        '/about': About
+    }
+
+    new Vue({
+        el: '#app',
+        data: {
+            currentRoute: '/about'
+        },
+        computed: {
+            ViewComponent () {
+                return routes[this.currentRoute] || NotFound
+            }
+        },
+        render (h) { return h(this.ViewComponent) }
+    }).$mount()
+</script>
+</body>
+</html>
