@@ -47,7 +47,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             Collection<? extends GrantedAuthority> authorities;
             try {
                 //ROLE_ADMIN,user,admin 身份:权限
-                authorities = AuthorityUtils.commaSeparatedStringToAuthorityList(role.getRoleName() + role.getAuth() + ",");
+                authorities = AuthorityUtils.commaSeparatedStringToAuthorityList(role.getRoleName() +"," + role.getAuth() + ",");
             } catch (Exception e) {
                 authorities = null;
             }
