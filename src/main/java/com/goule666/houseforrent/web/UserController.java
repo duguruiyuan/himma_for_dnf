@@ -7,6 +7,7 @@ import com.goule666.houseforrent.model.domain.UserDO;
 import com.goule666.houseforrent.model.vo.RequestLoginUser;
 import com.goule666.houseforrent.service.UserService;
 import com.goule666.houseforrent.utils.TokenUtils;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -30,7 +31,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/login",method = RequestMethod.POST)
+    @RequestMapping(value = "/login",method = RequestMethod.GET)
     public Reply login(@Valid RequestLoginUser requestLoginUser, BindingResult bindingResult){
         // 检查有没有输入用户名密码和格式对不对
         if (bindingResult.hasErrors()){
@@ -62,11 +63,19 @@ public class UserController {
     }
 
     @RequestMapping(value = "/admin",method = RequestMethod.POST)
-    @PreAuthorize(value = "hasAuthority('user')")//需要admin权限
+    @PreAuthorize(value = "hasAuthority('admin')")//需要admin权限
     //@PreAuthorize(value = "hasRole('ROLE_USER')")//需要ROLE_USER身份
     public Reply admin(){
         return new Reply("欢迎admin用户");
     }
+
+    @RequestMapping(value = "/user/info",method = RequestMethod.GET)
+    @PreAuthorize(value = "hasAuthority('user')")//需要admin权限
+    public Reply info(@Param("token")String token){
+        return new Reply(userService.findByName(tokenUtils.getUsernameFromToken(token)));
+    }
+
+
 
 
 }
