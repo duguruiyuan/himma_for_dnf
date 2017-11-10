@@ -8,31 +8,26 @@
 
 <!--列表-->
 <body>
-<div id="app"></div>
+<div id="example">
+    <input v-model="message">
+    <p>Original message: "{{ message }}"</p>
+    <p>Computed reversed message: "{{ reversedMessage }}"</p>
+</div>
 
 
 <script>
-    const NotFound = { template: '<p>Page not found</p>' }
-    const Home = { template: '<p>home page</p>' }
-    const About = { template: '<p>about page</p>' }
-
-    const routes = {
-        '/': Home,
-        '/about': About
-    }
-
-    new Vue({
-        el: '#app',
+    var vm = new Vue({
+        el: '#example',
         data: {
-            currentRoute: '/about'
+            message: 'Hello',
+            reversedMessage: 'a'
         },
         computed: {
-            ViewComponent () {
-                return routes[this.currentRoute] || NotFound
+            reversedMessage: function () {
+                return this.message.split('').reverse().join('')
             }
-        },
-        render (h) { return h(this.ViewComponent) }
-    }).$mount()
+        }
+    })
 </script>
 </body>
 </html>
