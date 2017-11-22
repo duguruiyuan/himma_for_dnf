@@ -9,6 +9,8 @@ import com.goule666.himmaForDnf.service.UserService;
 import com.goule666.himmaForDnf.utils.TokenUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.repository.query.Param;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -58,6 +60,10 @@ public class LoginController {
         }
         return null;
     }
-
+    @RequestMapping(value = "/user/info",method = RequestMethod.GET)
+    @PreAuthorize(value = "hasAuthority('view')")
+    public Reply getUserInfo(@Param("token")String token){
+        return new Reply(userService.getUserInfo(tokenUtils.getUsernameFromToken(token)));
+    }
 
 }

@@ -19,9 +19,5 @@ public class HimmaController {
     @Autowired
     private HimmaService himmaService;
 
-    @RequestMapping(value = "/user/info",method = RequestMethod.GET)
-    @PreAuthorize(value = "hasAuthority('view1')")//需要admin权限
-    public Reply info(@Param("token")String token){
-        return new Reply(himmaService.findAll());
-    }
+
 }

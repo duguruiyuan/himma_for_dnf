@@ -30,7 +30,18 @@ public class UserDO{
      * 是否黑名单
      */
     private Boolean enable;
+    /**
+     * 动态图片
+     */
+    private String avatar;
 
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
 
     public String getPassword() {
         return password;
@@ -113,11 +124,12 @@ public class UserDO{
                 "id=" + id +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
-                ", username='" + userName + '\'' +
+                ", userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
                 ", roleId=" + roleId +
                 ", lastPasswordChange=" + lastPasswordChange +
                 ", enable=" + enable +
+                ", avatar='" + avatar + '\'' +
                 '}';
     }
 }

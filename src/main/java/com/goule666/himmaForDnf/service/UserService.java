@@ -1,5 +1,6 @@
 package com.goule666.himmaForDnf.service;
 
+import com.alibaba.fastjson.JSONObject;
 import com.goule666.himmaForDnf.model.domain.UserDO;
 
 public interface UserService{
@@ -7,4 +8,11 @@ public interface UserService{
     int insert(UserDO pojo);
 
     UserDO findByName(String userName);
+
+    /**
+     * 根据token获取登录信息
+     * @param userName
+     * @return
+     */
+    JSONObject getUserInfo(String userName);
 }

@@ -64,7 +64,7 @@
     </Appenders>
 
     <Loggers>
-        <root level="INFO" includeLocation="true">
+        <root level="DEBUG" includeLocation="true">
             <appender-ref ref="INFO" />
             <appender-ref ref="WARN" />
             <appender-ref ref="ERROR" />
