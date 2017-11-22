@@ -1,5 +1,8 @@
 package com.goule666.himmaForDnf.model.domain;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -14,7 +17,9 @@ public class WorkerDO{
     @Id
     @GeneratedValue
     private Integer id;
+    @CreationTimestamp
     private Date createdAt;
+    @UpdateTimestamp
     private Date updatedAt;
     /**
      * 用户id

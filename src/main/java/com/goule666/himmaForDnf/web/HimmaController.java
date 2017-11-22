@@ -2,6 +2,8 @@ package com.goule666.himmaForDnf.web;
 
 import com.goule666.himmaForDnf.model.Reply;
 import com.goule666.himmaForDnf.service.HimmaService;
+import com.goule666.himmaForDnf.service.UserService;
+import com.goule666.himmaForDnf.utils.TokenUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -15,9 +17,22 @@ import org.springframework.web.bind.annotation.RestController;
  * @Description
  */
 @RestController
+@RequestMapping(value = "/himma")
 public class HimmaController {
     @Autowired
     private HimmaService himmaService;
 
+    @RequestMapping(value = "/createWorker",method = RequestMethod.POST)
+    @PreAuthorize(value = "hasAuthority('view')")
+    public Reply getUserInfo(@Param("workerType")String workerType,
+                             @Param("workerName")String workerName,
+                             @Param("token")String token){
+        return new Reply(himmaService.creatWorker(workerType,workerName,token));
+    }
 
+    @RequestMapping(value = "/getWorkerList",method = RequestMethod.GET)
+    @PreAuthorize(value = "hasAuthority('view')")
+    public Reply getUserInfo(){
+        return new Reply(himmaService.getWorkerList());
+    }
 }
