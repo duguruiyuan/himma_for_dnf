@@ -12,10 +12,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -36,16 +33,16 @@ public class HimmaController {
             @ApiImplicitParam(name = "typeId", value = "工人类型id", required = true, dataType = "int", paramType = "query"),
             @ApiImplicitParam(name = "name", value = "用户姓名", required = true, dataType = "String", paramType = "query"),
             @ApiImplicitParam(name = "X_Auth_Token", value = "token", required = true, dataType = "String", paramType = "header")})
-    @RequestMapping(value = "/createWorker", method = RequestMethod.POST)
+    @RequestMapping(value = "/createHimma", method = RequestMethod.POST)
     @PreAuthorize(value = "hasAuthority('view')")
-    public Reply<Boolean> getUserInfo(@Param("typeId") Integer typeId,
-                             @Param("name") String name,
+    public Reply<Boolean> getUserInfo(@RequestParam("typeId") Integer typeId,
+                             @RequestParam("name") String name,
                              @RequestHeader("X_Auth_Token") String token) {
         return new Reply<>(himmaService.creatWorker(typeId, name, token));
     }
 
     @ApiOperation(value = "获取搬砖工人列表", notes = "获取搬砖工人列表")
-    @RequestMapping(value = "/getWorkerList",method = RequestMethod.GET)
+    @RequestMapping(value = "/getHimmaList",method = RequestMethod.GET)
     @ApiImplicitParam(name = "X_Auth_Token", value = "token", required = true, dataType = "String", paramType = "header")
     @PreAuthorize(value = "hasAuthority('view')")
     public Reply<List<HimmaVO>> getUserInfo(@RequestHeader("X_Auth_Token") String token){

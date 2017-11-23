@@ -57,17 +57,21 @@ public class HimmaServiceImpl implements HimmaService {
 
     @Override
     public List<HimmaVO> getWorkerList(String token) {
-        Integer userId = userService.findByName(tokenUtils.getUsernameFromToken(token)).getId();
-        HimmaVO himmaVO = new HimmaVO();
-        himmaVO.setCreatedAt(new Date());
-        himmaVO.setStatus(1);
-        himmaVO.setSurplusPl(188);
-        himmaVO.setTimeUsed("20:00");
-        himmaVO.setTodayProfit(220D);
-        himmaVO.setType("狱血魔神");
-        himmaVO.setName("888x888x888");
         List<HimmaVO> himmaVOList = new ArrayList<>();
-        himmaVOList.add(himmaVO);
+        Integer userId = userService.findByName(tokenUtils.getUsernameFromToken(token)).getId();
+        List<HimmaDO> himmaDOList = himmaRepository.findHimmaDOByUserId(userId);
+        for (HimmaDO h : himmaDOList) {
+            HimmaVO himmaVO = new HimmaVO();
+            himmaVO.setId(h.getId());
+            himmaVO.setCreatedAt(h.getCreatedAt());
+            himmaVO.setStatus(h.getStatus());
+            himmaVO.setSurplusPl(h.getSurplusPl());
+            himmaVO.setTimeUsed("20:00");
+            himmaVO.setTodayProfit(220D);
+            himmaVO.setType(h.getTypeId().toString());
+            himmaVO.setName(h.getName());
+            himmaVOList.add(himmaVO);
+        }
         return himmaVOList;
     }
 

@@ -13,6 +13,8 @@ import java.util.Date;
 @ApiModel(value = "HimmaVO", description = "搬砖工人详细信息")
 public class HimmaVO {
 
+    @ApiModelProperty(value = "序号")
+    private Integer id;
     @ApiModelProperty(value = "创建时间")
     private Date createdAt;
     @ApiModelProperty(value = "工人类型")
@@ -27,6 +29,14 @@ public class HimmaVO {
     private Double todayProfit;
     @ApiModelProperty(value = "耗时")
     private String timeUsed;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public Date getCreatedAt() {
         return createdAt;

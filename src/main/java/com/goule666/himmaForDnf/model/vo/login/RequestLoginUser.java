@@ -3,6 +3,8 @@ package com.goule666.himmaForDnf.model.vo.login;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
+import java.io.Serializable;
+
 
 /**
  * @author niewenlong
@@ -10,7 +12,7 @@ import io.swagger.annotations.ApiModelProperty;
  * @Description 用户登陆接口参数的实体类
  */
 @ApiModel(value = "RequestLoginUser", description = "请求登录用户的信息")
-public class RequestLoginUser {
+public class RequestLoginUser implements Serializable {
 
     @ApiModelProperty(value = "用户名",required = true)
     private String username;

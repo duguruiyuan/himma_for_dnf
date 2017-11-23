@@ -15,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 /**
  * @author niewenlong
  * @Date 2017/11/22 Time: 19:11
@@ -34,9 +36,8 @@ public class LoginController {
     private UserService userService;
 
     @ApiOperation(value = "登录", notes = "根据用户名和密码登录并返回token")
-    @ApiImplicitParam(name = "requestLoginUser", value = "登录接口参数类", required = true, dataType = "RequestLoginUser")
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public Reply login(@RequestBody RequestLoginUser requestLoginUser) {
+    public Reply login(@ModelAttribute RequestLoginUser requestLoginUser) {
         UserDO userDO = userService.findByName(requestLoginUser.getUsername());
         Reply reply = checkAccount(requestLoginUser, userDO);
         if (reply != null) {
