@@ -1,8 +1,8 @@
 package com.goule666.himmaForDnf.service.impl;
 
+import com.goule666.himmaForDnf.dao.HimmaRecordRepository;
 import com.goule666.himmaForDnf.dao.HimmaRepository;
-import com.goule666.himmaForDnf.dao.WorkerRepository;
-import com.goule666.himmaForDnf.dao.WorkerTypeRepository;
+import com.goule666.himmaForDnf.dao.HimmaTypeRepository;
 import com.goule666.himmaForDnf.model.domain.HimmaDO;
 import com.goule666.himmaForDnf.model.domain.HimmaRecordDO;
 import com.goule666.himmaForDnf.model.vo.himma.HimmaVO;
@@ -24,19 +24,19 @@ import java.util.List;
 public class HimmaServiceImpl implements HimmaService {
 
     @Autowired
-    private HimmaRepository himmaRepository;
+    private HimmaRecordRepository himmaRecordRepository;
     @Autowired
     private TokenUtils tokenUtils;
     @Autowired
     private UserService userService;
     @Autowired
-    private WorkerTypeRepository workerTypeRepository;
+    private HimmaTypeRepository himmaTypeRepository;
     @Autowired
-    private WorkerRepository workerRepository;
+    private HimmaRepository himmaRepository;
 
     @Override
     public List<HimmaRecordDO> findAll() {
-        return himmaRepository.findAll();
+        return himmaRecordRepository.findAll();
     }
 
     @Override
@@ -50,7 +50,7 @@ public class HimmaServiceImpl implements HimmaService {
         himmaDO.setUserId(userId);
         himmaDO.setName(name);
         himmaDO.setTypeId(typeId);
-        workerRepository.save(himmaDO);
+        himmaRepository.save(himmaDO);
         return true;
     }
 

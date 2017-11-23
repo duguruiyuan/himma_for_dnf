@@ -1,6 +1,6 @@
 package com.goule666.himmaForDnf.service.impl;
 
-import com.goule666.himmaForDnf.dao.WorkerTypeRepository;
+import com.goule666.himmaForDnf.dao.HimmaTypeRepository;
 import com.goule666.himmaForDnf.model.domain.HimmaTypeDO;
 import com.goule666.himmaForDnf.model.vo.himma.HimmaTypeVO;
 import com.goule666.himmaForDnf.service.DictService;
@@ -20,11 +20,11 @@ import java.util.List;
 public class DictServiceImpl implements DictService {
 
     @Autowired
-    private WorkerTypeRepository workerTypeRepository;
+    private HimmaTypeRepository himmaTypeRepository;
 
     @Override
     public List<HimmaTypeVO> getWorkTypeList() {
-        List<HimmaTypeDO> himmaTypeDOList = workerTypeRepository.findAll();
+        List<HimmaTypeDO> himmaTypeDOList = himmaTypeRepository.findAll();
         List<HimmaTypeVO> resultList = new ArrayList<>();
         for(HimmaTypeDO w: himmaTypeDOList){
             HimmaTypeVO himmaTypeVO = new HimmaTypeVO();

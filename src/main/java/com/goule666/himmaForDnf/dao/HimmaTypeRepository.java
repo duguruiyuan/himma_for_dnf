@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
  * @author niewenlong
  */
 @Component
-public interface WorkerTypeRepository extends JpaRepository<HimmaTypeDO, Integer> {
+public interface HimmaTypeRepository extends JpaRepository<HimmaTypeDO, Integer> {
 
     HimmaTypeDO findByCode(@Param("code")String code);
 
