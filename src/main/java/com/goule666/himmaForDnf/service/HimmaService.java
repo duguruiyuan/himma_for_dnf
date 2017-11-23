@@ -15,16 +15,16 @@ public interface HimmaService {
 
     /**
      * 创建工人
-     * @param typeId
-     * @param name
-     * @param token
-     * @return
+     * @param typeId 搬砖工人类型id
+     * @param name 搬砖名称
+     * @param token token
+     * @return true or false
      */
     boolean creatWorker(Integer typeId,String name,String token);
 
     /**
      * 获取所有工人列表
-     * @return
+     * @return 所有工人列表
      */
-    List<HimmaVO> getWorkerList();
+    List<HimmaVO> getWorkerList(String token);
 }

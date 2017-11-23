@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
  * @Date 2017/11/22 Time: 19:11
  * @Description 处理登录请求
  */
-@Api(value = "LoginController", description = "登录接口")
+@Api(tags = "登录接口")
 @RestController
 public class LoginController {
 
@@ -44,7 +44,7 @@ public class LoginController {
         }
         JSONObject needJSON = new JSONObject();
         needJSON.put(tokenHeader, tokenUtils.generateToken(userDO));
-        return new Reply(needJSON);
+        return new Reply<>(needJSON);
     }
 
     private Reply checkAccount(RequestLoginUser requestLoginUser, UserDO userDO) {

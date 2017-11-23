@@ -1,5 +1,8 @@
 package com.goule666.himmaForDnf.model.vo.himma;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.util.Date;
 
 /**
@@ -7,34 +10,22 @@ import java.util.Date;
  * @Date 2017/11/8 Time: 19:51
  * @Description 搬砖工人VO
  */
+@ApiModel(value = "HimmaVO", description = "搬砖工人详细信息")
 public class HimmaVO {
-    /**
-     * 创建时间
-     */
+
+    @ApiModelProperty(value = "创建时间")
     private Date createdAt;
-    /**
-     * 工人类型
-     */
+    @ApiModelProperty(value = "工人类型")
     private String type;
-    /**
-     * 姓名
-     */
+    @ApiModelProperty(value = "姓名")
     private String name;
-    /**
-     * 剩余疲劳值
-     */
+    @ApiModelProperty(value = "剩余疲劳值")
     private Integer surplusPl;
-    /**
-     * 状态 0：停用，1：启用
-     */
+    @ApiModelProperty(value = "状态 0：停用，1：启用")
     private Integer status;
-    /**
-     * 当天收益
-     */
+    @ApiModelProperty(value = "当天收益")
     private Double todayProfit;
-    /**
-     * 耗时
-     */
+    @ApiModelProperty(value = "耗时")
     private String timeUsed;
 
     public Date getCreatedAt() {

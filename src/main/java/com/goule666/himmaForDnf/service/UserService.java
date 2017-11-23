@@ -2,6 +2,7 @@ package com.goule666.himmaForDnf.service;
 
 import com.alibaba.fastjson.JSONObject;
 import com.goule666.himmaForDnf.model.domain.UserDO;
+import com.goule666.himmaForDnf.model.vo.user.UserInfoVO;
 
 public interface UserService{
 
@@ -14,5 +15,5 @@ public interface UserService{
      * @param userName
      * @return
      */
-    JSONObject getUserInfo(String userName);
+    UserInfoVO getUserInfo(String userName);
 }

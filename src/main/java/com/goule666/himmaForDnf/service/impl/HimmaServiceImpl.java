@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -55,15 +56,16 @@ public class HimmaServiceImpl implements HimmaService {
     }
 
     @Override
-    public List<HimmaVO> getWorkerList() {
+    public List<HimmaVO> getWorkerList(String token) {
+        Integer userId = userService.findByName(tokenUtils.getUsernameFromToken(token)).getId();
         HimmaVO himmaVO = new HimmaVO();
-        /*himmaVO.setCreatedAt(new Date());
+        himmaVO.setCreatedAt(new Date());
         himmaVO.setStatus(1);
         himmaVO.setSurplusPl(188);
         himmaVO.setTimeUsed("20:00");
         himmaVO.setTodayProfit(220D);
-        himmaVO.setWorkerType("BHLL");
-        himmaVO.setWorkerName("888x888x888");*/
+        himmaVO.setType("狱血魔神");
+        himmaVO.setName("888x888x888");
         List<HimmaVO> himmaVOList = new ArrayList<>();
         himmaVOList.add(himmaVO);
         return himmaVOList;

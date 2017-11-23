@@ -1,19 +1,20 @@
 package com.goule666.himmaForDnf.model.vo.himma;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 /**
  * @author niewenlong
  * @Date 2017/11/8 Time: 19:51
  * @Description 职业类型VO
  */
+@ApiModel(value = "HimmaTypeVO", description = "职业类型集合")
 public class HimmaTypeVO {
-    /**
-     * 职业id
-     */
+
+    @ApiModelProperty(value = "职业类型id")
     private Integer id;
-    /**
-     * 职业名称
-     * eg:狱血魔神，花花，等等
-     */
+
+    @ApiModelProperty(value = "职业类型名称")
     private String name;
 
     public Integer getId() {

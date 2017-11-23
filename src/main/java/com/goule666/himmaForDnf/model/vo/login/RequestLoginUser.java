@@ -9,7 +9,7 @@ import io.swagger.annotations.ApiModelProperty;
  * @Date 2017-10-25 14:12:09
  * @Description 用户登陆接口参数的实体类
  */
-@ApiModel(value = "RequestLoginUser", description = "用户请求参数")
+@ApiModel(value = "RequestLoginUser", description = "请求登录用户的信息")
 public class RequestLoginUser {
 
     @ApiModelProperty(value = "用户名",required = true)

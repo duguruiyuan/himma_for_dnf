@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.goule666.himmaForDnf.dao.RoleRepository;
 import com.goule666.himmaForDnf.dao.UserRepository;
 import com.goule666.himmaForDnf.model.domain.UserDO;
+import com.goule666.himmaForDnf.model.vo.user.UserInfoVO;
 import com.goule666.himmaForDnf.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,13 +32,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public JSONObject getUserInfo(String userName) {
-        JSONObject need = new JSONObject();
+    public UserInfoVO getUserInfo(String userName) {
+        UserInfoVO userInfoVO = new UserInfoVO();
         UserDO userDO = userRepository.findByUserName(userName);
-        need.put("role", roleRepository.findById(userDO.getRoleId()).getRoleName());
-        need.put("name", userDO.getUserName());
-        need.put("avatar", userDO.getAvatar());
-        need.put("introduction", userDO.getUserName());
-        return need;
+        userInfoVO.setRole(roleRepository.findById(userDO.getRoleId()).getRoleName());
+        userInfoVO.setName(userDO.getUserName());
+        userInfoVO.setAvatar(userDO.getAvatar());
+        userInfoVO.setIntroduction(userDO.getUserName());
+        return userInfoVO;
     }
 }
