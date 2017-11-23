@@ -4,7 +4,7 @@ package com.goule666.himmaForDnf.web;
 import com.alibaba.fastjson.JSONObject;
 import com.goule666.himmaForDnf.model.Reply;
 import com.goule666.himmaForDnf.model.domain.UserDO;
-import com.goule666.himmaForDnf.model.vo.RequestLoginUser;
+import com.goule666.himmaForDnf.model.vo.login.RequestLoginUser;
 import com.goule666.himmaForDnf.service.UserService;
 import com.goule666.himmaForDnf.utils.ResponseInfo;
 import com.goule666.himmaForDnf.utils.TokenUtils;

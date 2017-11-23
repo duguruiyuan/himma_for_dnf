@@ -1,11 +1,7 @@
-package com.goule666.himmaForDnf.model.vo;
+package com.goule666.himmaForDnf.model.vo.login;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-
-import javax.validation.constraints.NotNull;
-
-
 
 
 /**
