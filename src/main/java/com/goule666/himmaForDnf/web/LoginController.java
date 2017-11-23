@@ -6,19 +6,21 @@ import com.goule666.himmaForDnf.model.Reply;
 import com.goule666.himmaForDnf.model.domain.UserDO;
 import com.goule666.himmaForDnf.model.vo.RequestLoginUser;
 import com.goule666.himmaForDnf.service.UserService;
+import com.goule666.himmaForDnf.utils.ResponseInfo;
 import com.goule666.himmaForDnf.utils.TokenUtils;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
 
 /**
  * @author niewenlong
  * @Date 2017/11/22 Time: 19:11
  * @Description 处理登录请求
  */
+@Api(value = "LoginController", description = "登录接口")
 @RestController
 public class LoginController {
 
@@ -31,11 +33,10 @@ public class LoginController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/login",method = RequestMethod.POST)
-    public Reply login(@Valid RequestLoginUser requestLoginUser, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return new Reply(400, "缺少参数或者参数格式不对");
-        }
+    @ApiOperation(value = "登录", notes = "根据用户名和密码登录并返回token")
+    @ApiImplicitParam(name = "requestLoginUser", value = "登录接口参数类", required = true, dataType = "RequestLoginUser")
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public Reply login(@RequestBody RequestLoginUser requestLoginUser) {
         UserDO userDO = userService.findByName(requestLoginUser.getUsername());
         Reply reply = checkAccount(requestLoginUser, userDO);
         if (reply != null) {
@@ -48,13 +49,13 @@ public class LoginController {
 
     private Reply checkAccount(RequestLoginUser requestLoginUser, UserDO userDO) {
         if (userDO == null) {
-            return new Reply(434, "账号不存在！");
+            return new Reply(ResponseInfo.NO_ACCOUNT.getState(), ResponseInfo.NO_ACCOUNT.getStateInfo());
         } else {
-            if (userDO.getEnable() == false) {
-                return new Reply(452, "账号在黑名单中");
+            if (!userDO.getEnable()) {
+                return new Reply(ResponseInfo.NO_ENABLE.getState(), ResponseInfo.NO_ENABLE.getStateInfo());
             }
             if (!userDO.getPassword().equals(requestLoginUser.getPassword())) {
-                return new Reply(438, "密码错误！");
+                return new Reply(ResponseInfo.WRONG_PASSWORD.getState(), ResponseInfo.WRONG_PASSWORD.getStateInfo());
             }
         }
         return null;

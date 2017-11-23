@@ -9,7 +9,7 @@ import java.util.Date;
  * @Description 搬砖工人类型表
  */
 @Entity
-@Table(name = "worker_type")
+@Table(name = "himma_type")
 public class HimmaTypeDO {
     @Id
     @GeneratedValue

@@ -61,6 +61,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
 
         http.authorizeRequests()
+                .antMatchers("/v2/api-docs", "/configuration/ui", "/swagger-resources", "/configuration/security", "/swagger-ui.html", "/webjars/**","/swagger-resources/configuration/ui","/swagge‌​r-ui.html").permitAll()
                 .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()//允许options请求
                 .antMatchers("/", "/login").permitAll()//允许localhost:8080/和localhost:8080/login通过，不需要验证
                 .anyRequest().authenticated()

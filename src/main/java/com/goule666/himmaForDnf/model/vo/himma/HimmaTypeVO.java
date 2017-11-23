@@ -7,8 +7,7 @@ package com.goule666.himmaForDnf.model.vo.himma;
  */
 public class HimmaTypeVO {
     /**
-     * 职业编码
-     * eg:yxms,hh
+     * 职业id
      */
     private Integer id;
     /**

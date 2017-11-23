@@ -27,12 +27,12 @@ public class HimmaController {
     public Reply getUserInfo(@Param("typeId")Integer typeId,
                              @Param("name")String name,
                              @Param("token")String token){
-        return new Reply(himmaService.creatWorker(typeId,name,token));
+        return null;
     }
 
     @RequestMapping(value = "/getWorkerList",method = RequestMethod.GET)
     @PreAuthorize(value = "hasAuthority('view')")
     public Reply getUserInfo(){
-        return new Reply(himmaService.getWorkerList());
+        return null;
     }
 }

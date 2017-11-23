@@ -27,6 +27,6 @@ public class UserController {
     @RequestMapping(value = "/info",method = RequestMethod.GET)
     @PreAuthorize(value = "hasAuthority('view')")
     public Reply getUserInfo(@Param("token")String token){
-        return new Reply(userService.getUserInfo(tokenUtils.getUsernameFromToken(token)));
+        return null;
     }
 }

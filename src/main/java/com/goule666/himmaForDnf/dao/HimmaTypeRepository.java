@@ -11,6 +11,4 @@ import org.springframework.stereotype.Component;
 @Component
 public interface HimmaTypeRepository extends JpaRepository<HimmaTypeDO, Integer> {
 
-    HimmaTypeDO findByCode(@Param("code")String code);
-
 }

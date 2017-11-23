@@ -19,9 +19,9 @@ public class DictController {
     @Autowired
     private DictService dictService;
 
-    @RequestMapping(value = "/himma/getWorkTypeList",method = RequestMethod.GET)
+    @RequestMapping(value = "/himma/getHimmaTypeList",method = RequestMethod.GET)
     @PreAuthorize(value = "hasAuthority('view')")
     public Reply getUserInfo(){
-        return new Reply(dictService.getWorkTypeList());
+        return null;
     }
 }

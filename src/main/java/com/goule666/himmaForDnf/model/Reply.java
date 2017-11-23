@@ -7,27 +7,26 @@ import java.io.Serializable;
  * @Date: 2017/10/25 14:04
  * @Description: 返回参数的封装
  */
-public class Reply implements Serializable {
-    private static final long serialVersionUID = -5200183948618627504L;
-    private Object results;
+public class Reply<T>{
+    private T results;
     private Integer statusCode;
     private String statusMsg;
 
-    public Reply(Object results) {
+    public Reply(T results) {
         this.results = results;
         this.statusCode = 200;
     }
 
-    public Reply(Object results, Integer statusCode) {
+    public Reply(T results, Integer statusCode) {
         this.results = results;
         this.statusCode = statusCode;
     }
 
-    public Object getResults() {
+    public T getResults() {
         return results;
     }
 
-    public void setResults(Object results) {
+    public void setResults(T results) {
         this.results = results;
     }
 

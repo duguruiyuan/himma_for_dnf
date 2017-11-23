@@ -38,21 +38,9 @@ public class HimmaRecordDO{
      */
     private String timeUsed;
     /**
-     * 魔刹石个数
+     * 材料信息
      */
-    private Integer mssCount;
-    /**
-     * 挑战书个数
-     */
-    private Integer tzsCount;
-    /**
-     * 无色个数
-     */
-    private Integer wsCount;
-    /**
-     * 遗忘陨石个数
-     */
-    private Integer ywysCount;
+    private String himmaInfo;
     /**
      * 意外收获
      */
@@ -61,6 +49,30 @@ public class HimmaRecordDO{
      * 总收益
      */
     private Double profit;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
 
     public Integer getHimmaId() {
         return himmaId;
@@ -94,36 +106,12 @@ public class HimmaRecordDO{
         this.timeUsed = timeUsed;
     }
 
-    public Integer getMssCount() {
-        return mssCount;
+    public String getHimmaInfo() {
+        return himmaInfo;
     }
 
-    public void setMssCount(Integer mssCount) {
-        this.mssCount = mssCount;
-    }
-
-    public Integer getTzsCount() {
-        return tzsCount;
-    }
-
-    public void setTzsCount(Integer tzsCount) {
-        this.tzsCount = tzsCount;
-    }
-
-    public Integer getWsCount() {
-        return wsCount;
-    }
-
-    public void setWsCount(Integer wsCount) {
-        this.wsCount = wsCount;
-    }
-
-    public Integer getYwysCount() {
-        return ywysCount;
-    }
-
-    public void setYwysCount(Integer ywysCount) {
-        this.ywysCount = ywysCount;
+    public void setHimmaInfo(String himmaInfo) {
+        this.himmaInfo = himmaInfo;
     }
 
     public Double getYwsh() {
@@ -142,30 +130,6 @@ public class HimmaRecordDO{
         this.profit = profit;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public Date getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
     @Override
     public String toString() {
         return "HimmaRecordDO{" +
@@ -176,10 +140,7 @@ public class HimmaRecordDO{
                 ", startTime=" + startTime +
                 ", endTime=" + endTime +
                 ", timeUsed='" + timeUsed + '\'' +
-                ", mssCount=" + mssCount +
-                ", tzsCount=" + tzsCount +
-                ", wsCount=" + wsCount +
-                ", ywysCount=" + ywysCount +
+                ", himmaInfo='" + himmaInfo + '\'' +
                 ", ywsh=" + ywsh +
                 ", profit=" + profit +
                 '}';

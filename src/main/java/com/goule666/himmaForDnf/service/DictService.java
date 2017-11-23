@@ -14,6 +14,6 @@ public interface DictService {
      * 获取所有的职业类型
      * @return
      */
-    List<HimmaTypeVO> getWorkTypeList();
+    List<HimmaTypeVO> getHimmaTypeList();
 
 }

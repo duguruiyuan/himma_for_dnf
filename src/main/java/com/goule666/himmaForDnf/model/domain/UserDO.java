@@ -1,5 +1,7 @@
 package com.goule666.himmaForDnf.model.domain;
 
+import io.swagger.annotations.ApiModel;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
@@ -10,6 +12,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "user")
+@ApiModel(discriminator = "啊啊啊啊")
 public class UserDO{
     @Id
     @GeneratedValue

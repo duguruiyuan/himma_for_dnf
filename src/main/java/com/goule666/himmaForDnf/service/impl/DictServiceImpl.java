@@ -23,7 +23,7 @@ public class DictServiceImpl implements DictService {
     private HimmaTypeRepository himmaTypeRepository;
 
     @Override
-    public List<HimmaTypeVO> getWorkTypeList() {
+    public List<HimmaTypeVO> getHimmaTypeList() {
         List<HimmaTypeDO> himmaTypeDOList = himmaTypeRepository.findAll();
         List<HimmaTypeVO> resultList = new ArrayList<>();
         for(HimmaTypeDO w: himmaTypeDOList){

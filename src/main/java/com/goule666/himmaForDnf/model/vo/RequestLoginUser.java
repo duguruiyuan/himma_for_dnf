@@ -1,6 +1,10 @@
 package com.goule666.himmaForDnf.model.vo;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import javax.validation.constraints.NotNull;
+
 
 
 
@@ -9,12 +13,13 @@ import javax.validation.constraints.NotNull;
  * @Date 2017-10-25 14:12:09
  * @Description 用户登陆接口参数的实体类
  */
+@ApiModel(value = "RequestLoginUser", description = "用户请求参数")
 public class RequestLoginUser {
 
-    @NotNull
+    @ApiModelProperty(value = "用户名",required = true)
     private String username;
 
-    @NotNull
+    @ApiModelProperty(value = "密码",required = true)
     private String password;
 
     public RequestLoginUser() {
