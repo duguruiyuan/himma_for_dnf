@@ -24,10 +24,10 @@ public class HimmaController {
 
     @RequestMapping(value = "/createWorker",method = RequestMethod.POST)
     @PreAuthorize(value = "hasAuthority('view')")
-    public Reply getUserInfo(@Param("workerType")String workerType,
-                             @Param("workerName")String workerName,
+    public Reply getUserInfo(@Param("typeId")Integer typeId,
+                             @Param("name")String name,
                              @Param("token")String token){
-        return new Reply(himmaService.creatWorker(workerType,workerName,token));
+        return new Reply(himmaService.creatWorker(typeId,name,token));
     }
 
     @RequestMapping(value = "/getWorkerList",method = RequestMethod.GET)

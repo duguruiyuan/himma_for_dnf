@@ -6,35 +6,21 @@ import java.util.Date;
 /**
  * @author niewenlong
  * @Date 2017/11/8 Time: 19:30
- * @Description 职业类型表
+ * @Description 搬砖工人类型表
  */
 @Entity
 @Table(name = "worker_type")
-public class WorkerTypeDO{
+public class HimmaTypeDO {
     @Id
     @GeneratedValue
     private Integer id;
     private Date createdAt;
     private Date updatedAt;
-
-    /**
-     * 职业编码
-     * eg:yxms,hh
-     */
-    private String code;
     /**
      * 职业名称
      * eg:狱血魔神，花花，等等
      */
     private String name;
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
 
     public String getName() {
         return name;
@@ -70,11 +56,10 @@ public class WorkerTypeDO{
 
     @Override
     public String toString() {
-        return "WorkerTypeDO{" +
+        return "HimmaTypeDO{" +
                 "id=" + id +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
-                ", code='" + code + '\'' +
                 ", name='" + name + '\'' +
                 '}';
     }

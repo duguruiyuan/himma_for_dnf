@@ -1,6 +1,6 @@
 package com.goule666.himmaForDnf.dao;
 
-import com.goule666.himmaForDnf.model.domain.WorkerTypeDO;
+import com.goule666.himmaForDnf.model.domain.HimmaTypeDO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Component;
@@ -9,8 +9,8 @@ import org.springframework.stereotype.Component;
  * @author niewenlong
  */
 @Component
-public interface WorkerTypeRepository extends JpaRepository<WorkerTypeDO, Integer> {
+public interface WorkerTypeRepository extends JpaRepository<HimmaTypeDO, Integer> {
 
-    WorkerTypeDO findByCode(@Param("code")String code);
+    HimmaTypeDO findByCode(@Param("code")String code);
 
 }

@@ -1,9 +1,8 @@
 package com.goule666.himmaForDnf.service.impl;
 
-import com.alibaba.fastjson.JSONObject;
 import com.goule666.himmaForDnf.dao.WorkerTypeRepository;
-import com.goule666.himmaForDnf.model.domain.WorkerTypeDO;
-import com.goule666.himmaForDnf.model.vo.WorkerTypeVO;
+import com.goule666.himmaForDnf.model.domain.HimmaTypeDO;
+import com.goule666.himmaForDnf.model.vo.himma.HimmaTypeVO;
 import com.goule666.himmaForDnf.service.DictService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,14 +23,14 @@ public class DictServiceImpl implements DictService {
     private WorkerTypeRepository workerTypeRepository;
 
     @Override
-    public List<WorkerTypeVO> getWorkTypeList() {
-        List<WorkerTypeDO> workerTypeDOList = workerTypeRepository.findAll();
-        List<WorkerTypeVO> resultList = new ArrayList<>();
-        for(WorkerTypeDO w:workerTypeDOList){
-            WorkerTypeVO workerTypeVO = new WorkerTypeVO();
-            workerTypeVO.setCode(w.getCode());
-            workerTypeVO.setName(w.getName());
-            resultList.add(workerTypeVO);
+    public List<HimmaTypeVO> getWorkTypeList() {
+        List<HimmaTypeDO> himmaTypeDOList = workerTypeRepository.findAll();
+        List<HimmaTypeVO> resultList = new ArrayList<>();
+        for(HimmaTypeDO w: himmaTypeDOList){
+            HimmaTypeVO himmaTypeVO = new HimmaTypeVO();
+            himmaTypeVO.setId(w.getId());
+            himmaTypeVO.setName(w.getName());
+            resultList.add(himmaTypeVO);
         }
         return resultList;
     }

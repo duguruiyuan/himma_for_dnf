@@ -1,10 +1,4 @@
-package com.goule666.himmaForDnf.model.vo;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import java.util.Date;
+package com.goule666.himmaForDnf.model.vo.himma;
 
 /**
  * @author niewenlong
@@ -16,19 +10,19 @@ public class WorkerTypeVO {
      * 职业编码
      * eg:yxms,hh
      */
-    private String code;
+    private Integer id;
     /**
      * 职业名称
      * eg:狱血魔神，花花，等等
      */
     private String name;
 
-    public String getCode() {
-        return code;
+    public Integer getId() {
+        return id;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {

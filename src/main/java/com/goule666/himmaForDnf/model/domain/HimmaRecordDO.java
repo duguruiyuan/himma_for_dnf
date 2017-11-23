@@ -22,9 +22,9 @@ public class HimmaRecordDO{
     @UpdateTimestamp
     private Date updatedAt;
     /**
-     * 工人id
+     * 搬砖工人id
      */
-    private Integer workerId;
+    private Integer himmaId;
     /**
      * 搬砖开始时间
      */
@@ -62,12 +62,12 @@ public class HimmaRecordDO{
      */
     private Double profit;
 
-    public Integer getWorkerId() {
-        return workerId;
+    public Integer getHimmaId() {
+        return himmaId;
     }
 
-    public void setWorkerId(Integer workerId) {
-        this.workerId = workerId;
+    public void setHimmaId(Integer himmaId) {
+        this.himmaId = himmaId;
     }
 
     public Date getStartTime() {
@@ -172,7 +172,7 @@ public class HimmaRecordDO{
                 "id=" + id +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
-                ", workerId=" + workerId +
+                ", himmaId=" + himmaId +
                 ", startTime=" + startTime +
                 ", endTime=" + endTime +
                 ", timeUsed='" + timeUsed + '\'' +

@@ -1,9 +1,7 @@
 package com.goule666.himmaForDnf.service;
 
 import com.goule666.himmaForDnf.model.domain.HimmaRecordDO;
-import com.goule666.himmaForDnf.model.domain.WorkerDO;
-import com.goule666.himmaForDnf.model.domain.WorkerTypeDO;
-import com.goule666.himmaForDnf.model.vo.WorkerVO;
+import com.goule666.himmaForDnf.model.vo.himma.HimmaVO;
 
 import java.util.List;
 
@@ -17,16 +15,16 @@ public interface HimmaService {
 
     /**
      * 创建工人
-     * @param workerType
-     * @param workerName
+     * @param typeId
+     * @param name
      * @param token
      * @return
      */
-    boolean creatWorker(String workerType,String workerName,String token);
+    boolean creatWorker(Integer typeId,String name,String token);
 
     /**
      * 获取所有工人列表
      * @return
      */
-    List<WorkerVO> getWorkerList();
+    List<HimmaVO> getWorkerList();
 }

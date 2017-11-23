@@ -9,11 +9,11 @@ import java.util.Date;
 /**
  * @author niewenlong
  * @Date 2017/11/8 Time: 19:51
- * @Description 搬砖工人
+ * @Description 搬砖工人表
  */
 @Entity
-@Table(name = "worker")
-public class WorkerDO{
+@Table(name = "himma")
+public class HimmaDO {
     @Id
     @GeneratedValue
     private Integer id;
@@ -28,11 +28,11 @@ public class WorkerDO{
     /**
      * 搬砖角色名称
      */
-    private String workerName;
+    private String name;
     /**
      * 角色类型id
      */
-    private Integer workerTypeId;
+    private Integer typeId;
     /**
      * 剩余疲劳值
      */
@@ -74,20 +74,20 @@ public class WorkerDO{
         this.userId = userId;
     }
 
-    public String getWorkerName() {
-        return workerName;
+    public String getName() {
+        return name;
     }
 
-    public void setWorkerName(String workerName) {
-        this.workerName = workerName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public Integer getWorkerTypeId() {
-        return workerTypeId;
+    public Integer getTypeId() {
+        return typeId;
     }
 
-    public void setWorkerTypeId(Integer workerTypeId) {
-        this.workerTypeId = workerTypeId;
+    public void setTypeId(Integer typeId) {
+        this.typeId = typeId;
     }
 
     public Integer getSurplusPl() {
@@ -108,13 +108,13 @@ public class WorkerDO{
 
     @Override
     public String toString() {
-        return "WorkerDO{" +
+        return "HimmaDO{" +
                 "id=" + id +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
                 ", userId=" + userId +
-                ", workerName='" + workerName + '\'' +
-                ", workerTypeId=" + workerTypeId +
+                ", name='" + name + '\'' +
+                ", typeId=" + typeId +
                 ", surplusPl=" + surplusPl +
                 ", status=" + status +
                 '}';

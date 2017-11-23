@@ -15,8 +15,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 /**
- * 处理登录请求
- * @author niewenlong 2017-10-23 10:06:07
+ * @author niewenlong
+ * @Date 2017/11/22 Time: 19:11
+ * @Description 处理登录请求
  */
 @RestController
 public class LoginController {

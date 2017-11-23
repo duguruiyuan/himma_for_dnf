@@ -1,9 +1,6 @@
 package com.goule666.himmaForDnf.service;
 
-import com.alibaba.fastjson.JSONObject;
-import com.goule666.himmaForDnf.model.domain.HimmaRecordDO;
-import com.goule666.himmaForDnf.model.domain.WorkerTypeDO;
-import com.goule666.himmaForDnf.model.vo.WorkerTypeVO;
+import com.goule666.himmaForDnf.model.vo.himma.HimmaTypeVO;
 
 import java.util.List;
 
@@ -17,6 +14,6 @@ public interface DictService {
      * 获取所有的职业类型
      * @return
      */
-    List<WorkerTypeVO> getWorkTypeList();
+    List<HimmaTypeVO> getWorkTypeList();
 
 }
