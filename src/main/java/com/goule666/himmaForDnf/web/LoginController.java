@@ -37,7 +37,7 @@ public class LoginController {
 
     @ApiOperation(value = "登录", notes = "根据用户名和密码登录并返回token")
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public Reply login(@ModelAttribute RequestLoginUser requestLoginUser) {
+    public Reply login(@ModelAttribute @Valid RequestLoginUser requestLoginUser) {
         UserDO userDO = userService.findByName(requestLoginUser.getUsername());
         Reply reply = checkAccount(requestLoginUser, userDO);
         if (reply != null) {

@@ -2,6 +2,7 @@ package com.goule666.himmaForDnf.model.vo.login;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import org.hibernate.validator.constraints.NotBlank;
 
 import java.io.Serializable;
 
@@ -14,7 +15,8 @@ import java.io.Serializable;
 @ApiModel(value = "RequestLoginUser", description = "请求登录用户的信息")
 public class RequestLoginUser implements Serializable {
 
-    @ApiModelProperty(value = "用户名",required = true)
+    @ApiModelProperty(value = "用户名")
+    @NotBlank(message = "用户名不能为空")
     private String username;
 
     @ApiModelProperty(value = "密码",required = true)

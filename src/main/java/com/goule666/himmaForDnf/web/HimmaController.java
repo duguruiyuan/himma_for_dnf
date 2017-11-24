@@ -36,8 +36,8 @@ public class HimmaController {
     @RequestMapping(value = "/createHimma", method = RequestMethod.POST)
     @PreAuthorize(value = "hasAuthority('view')")
     public Reply<Boolean> getUserInfo(@RequestParam("typeId") Integer typeId,
-                             @RequestParam("name") String name,
-                             @RequestHeader("X_Auth_Token") String token) {
+                                      @RequestParam("name") String name,
+                                      @RequestHeader("X_Auth_Token") String token) {
         return new Reply<>(himmaService.creatWorker(typeId, name, token));
     }
 
