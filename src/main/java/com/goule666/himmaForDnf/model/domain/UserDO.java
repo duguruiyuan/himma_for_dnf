@@ -3,7 +3,6 @@ package com.goule666.himmaForDnf.model.domain;
 import io.swagger.annotations.ApiModel;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 /**

@@ -1,4 +1,4 @@
-package com.goule666.himmaForDnf.filter;
+package com.goule666.himmaForDnf.config.filter;
 
 import com.goule666.himmaForDnf.utils.TokenUtils;
 import org.springframework.beans.factory.annotation.Autowired;

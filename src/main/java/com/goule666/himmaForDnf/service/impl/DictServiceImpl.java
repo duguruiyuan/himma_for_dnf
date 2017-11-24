@@ -1,6 +1,6 @@
 package com.goule666.himmaForDnf.service.impl;
 
-import com.goule666.himmaForDnf.dao.HimmaTypeRepository;
+import com.goule666.himmaForDnf.repository.HimmaTypeRepository;
 import com.goule666.himmaForDnf.model.domain.HimmaTypeDO;
 import com.goule666.himmaForDnf.model.vo.himma.HimmaTypeVO;
 import com.goule666.himmaForDnf.service.DictService;

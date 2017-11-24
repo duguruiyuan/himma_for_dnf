@@ -1,8 +1,7 @@
 package com.goule666.himmaForDnf.service.impl;
 
-import com.alibaba.fastjson.JSONObject;
-import com.goule666.himmaForDnf.dao.RoleRepository;
-import com.goule666.himmaForDnf.dao.UserRepository;
+import com.goule666.himmaForDnf.repository.RoleRepository;
+import com.goule666.himmaForDnf.repository.UserRepository;
 import com.goule666.himmaForDnf.model.domain.UserDO;
 import com.goule666.himmaForDnf.model.vo.user.UserInfoVO;
 import com.goule666.himmaForDnf.service.UserService;

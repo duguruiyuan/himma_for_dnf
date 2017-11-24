@@ -1,4 +1,4 @@
-package com.goule666.himmaForDnf.dao;
+package com.goule666.himmaForDnf.repository;
 
 import com.goule666.himmaForDnf.model.domain.HimmaRecordDO;
 import org.springframework.data.jpa.repository.JpaRepository;

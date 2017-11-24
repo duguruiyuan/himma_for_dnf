@@ -1,6 +1,6 @@
 package com.goule666.himmaForDnf.service.impl;
 
-import com.goule666.himmaForDnf.dao.RoleRepository;
+import com.goule666.himmaForDnf.repository.RoleRepository;
 import com.goule666.himmaForDnf.model.domain.RoleDO;
 import com.goule666.himmaForDnf.service.RoleService;
 import org.springframework.stereotype.Component;

@@ -1,7 +1,7 @@
 package com.goule666.himmaForDnf.config.security;
 
 
-import com.goule666.himmaForDnf.filter.AuthenticationTokenFilter;
+import com.goule666.himmaForDnf.config.filter.AuthenticationTokenFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

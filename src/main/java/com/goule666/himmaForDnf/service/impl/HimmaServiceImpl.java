@@ -1,8 +1,8 @@
 package com.goule666.himmaForDnf.service.impl;
 
-import com.goule666.himmaForDnf.dao.HimmaRecordRepository;
-import com.goule666.himmaForDnf.dao.HimmaRepository;
-import com.goule666.himmaForDnf.dao.HimmaTypeRepository;
+import com.goule666.himmaForDnf.repository.HimmaRecordRepository;
+import com.goule666.himmaForDnf.repository.HimmaRepository;
+import com.goule666.himmaForDnf.repository.HimmaTypeRepository;
 import com.goule666.himmaForDnf.model.domain.HimmaDO;
 import com.goule666.himmaForDnf.model.domain.HimmaRecordDO;
 import com.goule666.himmaForDnf.model.vo.himma.HimmaVO;
@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**

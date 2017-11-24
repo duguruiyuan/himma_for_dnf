@@ -1,4 +1,4 @@
-package com.goule666.himmaForDnf.utils;
+package com.goule666.himmaForDnf.enums;
 
 /**
  * @author niewenlong
