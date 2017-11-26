@@ -10,7 +10,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "price")
-public class PriceDO {
+public class MaterialPriceDO {
     @Id
     @GeneratedValue
     private Integer id;
@@ -68,7 +68,7 @@ public class PriceDO {
 
     @Override
     public String toString() {
-        return "PriceDO{" +
+        return "MaterialPriceDO{" +
                 "id=" + id +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +

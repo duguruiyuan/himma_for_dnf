@@ -42,10 +42,6 @@ public class HimmaRecordDO{
      */
     private String himmaInfo;
     /**
-     * 意外收获
-     */
-    private Double ywsh;
-    /**
      * 总收益
      */
     private Double profit;
@@ -114,13 +110,6 @@ public class HimmaRecordDO{
         this.himmaInfo = himmaInfo;
     }
 
-    public Double getYwsh() {
-        return ywsh;
-    }
-
-    public void setYwsh(Double ywsh) {
-        this.ywsh = ywsh;
-    }
 
     public Double getProfit() {
         return profit;
@@ -141,7 +130,6 @@ public class HimmaRecordDO{
                 ", endTime=" + endTime +
                 ", timeUsed='" + timeUsed + '\'' +
                 ", himmaInfo='" + himmaInfo + '\'' +
-                ", ywsh=" + ywsh +
                 ", profit=" + profit +
                 '}';
     }

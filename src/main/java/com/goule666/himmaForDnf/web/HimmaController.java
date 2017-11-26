@@ -48,4 +48,24 @@ public class HimmaController {
     public Reply<List<HimmaVO>> getUserInfo(@RequestHeader("X_Auth_Token") String token){
         return new Reply<>(himmaService.getWorkerList(token));
     }
+
+    @ApiOperation(value = "搬砖开始", notes = "搬砖开始")
+    @ApiImplicitParam(name = "himmaId", value = "搬砖工人id", required = true, dataType = "int", paramType = "query")
+    @RequestMapping(value = "/startHimma",method = RequestMethod.GET)
+    @PreAuthorize(value = "hasAuthority('view')")
+    public Reply<Boolean> startHimma(@RequestParam("himmaId")Integer himmaId){
+        return new Reply<>(himmaService.startHimma(himmaId));
+    }
+
+    @ApiOperation(value = "搬砖结束", notes = "搬砖结束")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "himmaInfo", value = "搬砖收货信息", required = true, dataType = "String", paramType = "query"),
+            @ApiImplicitParam(name = "himmaId", value = "搬砖工人id", required = true, dataType = "int", paramType = "query")})
+    @RequestMapping(value = "/endHimma", method = RequestMethod.POST)
+    @PreAuthorize(value = "hasAuthority('view')")
+    public Reply<Boolean> endHimma(@RequestHeader("X_Auth_Token") String token,
+                                   @RequestParam("himmaInfo") String himmaInfo,
+                                   @RequestParam("himmaId") Integer himmaId) {
+        return new Reply<>(himmaService.endHimma(himmaInfo,himmaId));
+    }
 }

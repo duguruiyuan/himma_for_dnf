@@ -27,4 +27,19 @@ public interface HimmaService {
      * @return 所有工人列表
      */
     List<HimmaVO> getWorkerList(String token);
+
+    /**
+     * 开始搬砖
+     * @param himmaId
+     * @return
+     */
+    Boolean startHimma(Integer himmaId);
+
+    /**
+     * 结束搬砖
+     * @param himmaInfo
+     * @param himmaId
+     * @return
+     */
+    Boolean endHimma(String himmaInfo,Integer himmaId);
 }
