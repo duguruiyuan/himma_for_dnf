@@ -1,15 +1,17 @@
 package com.goule666.himmaForDnf.service.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.goule666.himmaForDnf.model.domain.MaterialPriceDO;
+import com.goule666.himmaForDnf.model.domain.MaterialDO;
+import com.goule666.himmaForDnf.model.vo.himma.MaterialVO;
 import com.goule666.himmaForDnf.repository.HimmaRecordRepository;
 import com.goule666.himmaForDnf.repository.HimmaRepository;
 import com.goule666.himmaForDnf.repository.HimmaTypeRepository;
 import com.goule666.himmaForDnf.model.domain.HimmaDO;
 import com.goule666.himmaForDnf.model.domain.HimmaRecordDO;
 import com.goule666.himmaForDnf.model.vo.himma.HimmaVO;
-import com.goule666.himmaForDnf.repository.MaterialPriceRepository;
+import com.goule666.himmaForDnf.repository.MaterialRepository;
 import com.goule666.himmaForDnf.service.HimmaService;
 import com.goule666.himmaForDnf.service.UserService;
 import com.goule666.himmaForDnf.utils.TokenUtils;
@@ -40,7 +42,7 @@ public class HimmaServiceImpl implements HimmaService {
     @Autowired
     private HimmaRepository himmaRepository;
     @Autowired
-    private MaterialPriceRepository materialPriceRepository;
+    private MaterialRepository materialRepository;
 
     @Override
     public List<HimmaRecordDO> findAll() {
@@ -49,6 +51,9 @@ public class HimmaServiceImpl implements HimmaService {
 
     @Override
     public boolean creatWorker(Integer typeId,String name,String token) {
+        if (himmaRepository.findByName(name) != null) {
+            return false;
+        }
         Integer userId = userService.findByName(tokenUtils.getUsernameFromToken(token)).getId();
         HimmaDO himmaDO = new HimmaDO();
         //默认可用
@@ -66,7 +71,7 @@ public class HimmaServiceImpl implements HimmaService {
     public List<HimmaVO> getWorkerList(String token) {
         List<HimmaVO> himmaVOList = new ArrayList<>();
         Integer userId = userService.findByName(tokenUtils.getUsernameFromToken(token)).getId();
-        List<HimmaDO> himmaDOList = himmaRepository.findHimmaDOByUserId(userId);
+        List<HimmaDO> himmaDOList = himmaRepository.findByUserIdOrderBySurplusPlDesc(userId);
         for (HimmaDO h : himmaDOList) {
             HimmaRecordDO himmaRecordDO = himmaRecordRepository.findTodayHimmaRecordDOByHimmaId(h.getId());
             HimmaVO himmaVO = new HimmaVO();
@@ -97,8 +102,7 @@ public class HimmaServiceImpl implements HimmaService {
     }
 
     @Override
-    public Boolean endHimma(String himmaInfo, Integer himmaId) {
-        //todo 需要重新做
+    public Double endHimma(String himmaInfo, Integer himmaId) {
         HimmaRecordDO himmaRecordDO = himmaRecordRepository.findTodayHimmaRecordDOByHimmaId(himmaId);
         //搬砖结束时间
         himmaRecordDO.setEndTime(new Date());
@@ -106,34 +110,33 @@ public class HimmaServiceImpl implements HimmaService {
         himmaRecordDO.setHimmaInfo(himmaInfo);
         //耗时
         himmaRecordDO.setTimeUsed(String.valueOf(System.currentTimeMillis() - himmaRecordDO.getStartTime().getTime()));
-        //解析{"mssCount":0,"tzsCount":0,"wsCount":0,"ywsh":0,"jb":0}
-        JSONObject json = JSON.parseObject(himmaInfo);
+        //解析[{"materialId":1,"startValue":"0","endValue":"500"},{"materialId":2,"startValue":0,"endValue":"5000"},{"materialId":3,"startValue":0,"endValue":"600"},{"materialId":4,"startValue":0,"endValue":"8"}]
+        List<JSONObject> jsonArray = JSON.parseArray(himmaInfo,JSONObject.class);
         //计算收益 mss+tzs+ws+ywys+ywsh+jb
-        BigDecimal mssPrice = new BigDecimal(0);
-        BigDecimal tzsPrice = new BigDecimal(0);
-        BigDecimal wsPrice = new BigDecimal(0);
-        BigDecimal ywysPrice = new BigDecimal(0);
         Double todayProfit = 0D;
-        List<MaterialPriceDO> materialPriceDOList = materialPriceRepository.findAll();
-        for(MaterialPriceDO m:materialPriceDOList){
-            if(m.getId() == 1){
-                mssPrice = BigDecimal.valueOf(m.getPrice());
-            }
-            if(m.getId() == 2){
-                tzsPrice = BigDecimal.valueOf(m.getPrice());
-            }
-            if(m.getId() == 3){
-                wsPrice = BigDecimal.valueOf(m.getPrice());
-            }
-            if(m.getId() == 4){
-                ywysPrice = BigDecimal.valueOf(m.getPrice());
-            }
+        for(JSONObject j:jsonArray){
+            todayProfit += (j.getDouble("endValue") - j.getDouble("startValue")) * materialRepository.findOne(j.getInteger("materialId")).getPrice();
         }
-        todayProfit = mssPrice.multiply(json.getBigDecimal("mssCount")).doubleValue() + tzsPrice.multiply(json.getBigDecimal("tzsCount")).doubleValue() +
-                wsPrice.multiply(json.getBigDecimal("wsCount")).doubleValue() + ywysPrice.multiply(json.getBigDecimal("ywys")).doubleValue();
         himmaRecordDO.setProfit(todayProfit);
+        HimmaDO himmaDO = himmaRepository.findOne(himmaId);
+        //默认疲劳值为0
+        himmaDO.setSurplusPl(0);
         himmaRecordRepository.save(himmaRecordDO);
-        return true;
+        return todayProfit;
+    }
+
+    @Override
+    public List<MaterialVO> getMaterialInfo() {
+        List<MaterialDO> materialDOList = materialRepository.findAll();
+        List<MaterialVO> materialVOList = new ArrayList<>();
+        for(MaterialDO m:materialDOList){
+            MaterialVO materialVO = new MaterialVO();
+            materialVO.setId(m.getId());
+            materialVO.setName(m.getName());
+            materialVO.setPrice(m.getPrice());
+            materialVOList.add(materialVO);
+        }
+        return materialVOList;
     }
 
 }

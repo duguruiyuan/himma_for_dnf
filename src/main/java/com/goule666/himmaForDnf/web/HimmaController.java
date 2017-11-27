@@ -2,6 +2,7 @@ package com.goule666.himmaForDnf.web;
 
 import com.goule666.himmaForDnf.model.Reply;
 import com.goule666.himmaForDnf.model.vo.himma.HimmaVO;
+import com.goule666.himmaForDnf.model.vo.himma.MaterialVO;
 import com.goule666.himmaForDnf.service.HimmaService;
 import com.goule666.himmaForDnf.service.UserService;
 import com.goule666.himmaForDnf.utils.TokenUtils;
@@ -63,9 +64,14 @@ public class HimmaController {
             @ApiImplicitParam(name = "himmaId", value = "搬砖工人id", required = true, dataType = "int", paramType = "query")})
     @RequestMapping(value = "/endHimma", method = RequestMethod.POST)
     @PreAuthorize(value = "hasAuthority('view')")
-    public Reply<Boolean> endHimma(@RequestHeader("X_Auth_Token") String token,
-                                   @RequestParam("himmaInfo") String himmaInfo,
+    public Reply<Double> endHimma(@RequestParam("himmaInfo") String himmaInfo,
                                    @RequestParam("himmaId") Integer himmaId) {
-        return new Reply<>(himmaService.endHimma(himmaInfo,himmaId));
+        return new Reply<>(himmaService.endHimma(himmaInfo, himmaId));
+    }
+    @ApiOperation(value = "获取下拉框内容（搬砖材料）", notes = "获取下拉框内容（搬砖材料）")
+    @RequestMapping(value = "/getMaterialInfo", method = RequestMethod.GET)
+    @PreAuthorize(value = "hasAuthority('view')")
+    public Reply<List<MaterialVO>> getMaterialInfo() {
+        return new Reply<>(himmaService.getMaterialInfo());
     }
 }

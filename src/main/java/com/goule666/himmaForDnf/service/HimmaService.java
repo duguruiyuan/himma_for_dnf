@@ -2,6 +2,7 @@ package com.goule666.himmaForDnf.service;
 
 import com.goule666.himmaForDnf.model.domain.HimmaRecordDO;
 import com.goule666.himmaForDnf.model.vo.himma.HimmaVO;
+import com.goule666.himmaForDnf.model.vo.himma.MaterialVO;
 
 import java.util.List;
 
@@ -41,5 +42,10 @@ public interface HimmaService {
      * @param himmaId
      * @return
      */
-    Boolean endHimma(String himmaInfo,Integer himmaId);
+    Double endHimma(String himmaInfo,Integer himmaId);
+
+    /**
+     * 获取下拉框内容(搬砖材料)
+     */
+    List<MaterialVO> getMaterialInfo();
 }

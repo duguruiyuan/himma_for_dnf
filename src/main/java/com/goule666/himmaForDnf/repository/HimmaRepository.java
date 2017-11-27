@@ -18,6 +18,13 @@ public interface HimmaRepository extends JpaRepository<HimmaDO, Integer> {
      * @param userId 用户id
      * @return 搬砖工人集合
      */
-    List<HimmaDO> findHimmaDOByUserId(@Param("userId") Integer userId);
+    List<HimmaDO> findByUserIdOrderBySurplusPlDesc(@Param("userId") Integer userId);
+
+    /**
+     * 根据姓名查询搬砖人员信息
+     * @param name
+     * @return
+     */
+    HimmaDO findByName(@Param("name") String name);
 
 }
