@@ -31,16 +31,16 @@ public interface HimmaService {
 
     /**
      * 开始搬砖
-     * @param himmaId
-     * @return
+     * @param himmaId 工人id
+     * @return 是否成功
      */
     Boolean startHimma(Integer himmaId);
 
     /**
      * 结束搬砖
-     * @param himmaInfo
-     * @param himmaId
-     * @return
+     * @param himmaInfo 搬砖信息
+     * @param himmaId 工人id
+     * @return 收益
      */
     Double endHimma(String himmaInfo,Integer himmaId);
 
@@ -48,4 +48,11 @@ public interface HimmaService {
      * 获取下拉框内容(搬砖材料)
      */
     List<MaterialVO> getMaterialInfo();
+
+    /**
+     * 修改材料价格
+     * @param materialVOList 材料VO
+     * @return true or false
+     */
+    Boolean changeMaterialPrice(List<MaterialVO> materialVOList);
 }

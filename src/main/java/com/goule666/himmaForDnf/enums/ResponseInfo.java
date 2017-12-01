@@ -21,7 +21,8 @@ public enum ResponseInfo {
     INTERNAL_SERVER_ERROR(500,"服务器发生错误，用户将无法判断发出的请求是否成功。"),
     NO_ACCOUNT(434,"账号不存在"),
     NO_ENABLE(452,"黑名单"),
-    WRONG_PASSWORD(438,"密码错误");
+    WRONG_PASSWORD(438,"密码错误"),
+    SERVER_ERROR(500,"服务器出错");
 
     private int state;
 

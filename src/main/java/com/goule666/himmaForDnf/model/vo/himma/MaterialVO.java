@@ -3,6 +3,8 @@ package com.goule666.himmaForDnf.model.vo.himma;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
+import java.io.Serializable;
+
 
 /**
  * @author niewenlong
@@ -10,13 +12,13 @@ import io.swagger.annotations.ApiModelProperty;
  * @Description
  */
 @ApiModel(value = "MaterialVO", description = "下拉框内容(搬砖材料)")
-public class MaterialVO {
+public class MaterialVO implements Serializable {
 
     @ApiModelProperty(value = "序号")
     private Integer id;
-    @ApiModelProperty(value = "姓名")
+    @ApiModelProperty(value = "材料名称")
     private String name;
-    @ApiModelProperty(value = "价格")
+    @ApiModelProperty(value = "材料价格")
     private Double price;
 
     public Integer getId() {

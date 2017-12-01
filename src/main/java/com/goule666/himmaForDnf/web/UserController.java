@@ -32,6 +32,6 @@ public class UserController {
     @RequestMapping(value = "/info",method = RequestMethod.GET)
     @PreAuthorize(value = "hasAuthority('view')")
     public Reply<UserInfoVO> getUserInfo(@RequestHeader("X_Auth_Token")String token) {
-        return new Reply(userService.getUserInfo(tokenUtils.getUsernameFromToken(token)));
+        return new Reply<>(userService.getUserInfo(tokenUtils.getUsernameFromToken(token)));
     }
 }

@@ -50,7 +50,7 @@ public class HimmaServiceImpl implements HimmaService {
     }
 
     @Override
-    public boolean creatWorker(Integer typeId,String name,String token) {
+    public boolean creatWorker(Integer typeId, String name, String token) {
         if (himmaRepository.findByName(name) != null) {
             return false;
         }
@@ -97,6 +97,12 @@ public class HimmaServiceImpl implements HimmaService {
         himmaRecordDO.setHimmaId(himmaId);
         //搬砖开始时间
         himmaRecordDO.setStartTime(new Date());
+        //判断当前工人当天是否创建 如果创建则更新
+        HimmaRecordDO himmaRecordDO1 = himmaRecordRepository.findTodayHimmaRecordDOByHimmaId(himmaId);
+        if (himmaRecordDO1 != null) {
+            //设置id 更新
+            himmaRecordDO.setId(himmaRecordDO1.getId());
+        }
         himmaRecordRepository.save(himmaRecordDO);
         return true;
     }
@@ -110,26 +116,32 @@ public class HimmaServiceImpl implements HimmaService {
         himmaRecordDO.setHimmaInfo(himmaInfo);
         //耗时
         himmaRecordDO.setTimeUsed(String.valueOf(System.currentTimeMillis() - himmaRecordDO.getStartTime().getTime()));
+
+        JSONObject json = JSON.parseObject(himmaInfo);
         //解析[{"materialId":1,"startValue":"0","endValue":"500"},{"materialId":2,"startValue":0,"endValue":"5000"},{"materialId":3,"startValue":0,"endValue":"600"},{"materialId":4,"startValue":0,"endValue":"8"}]
-        List<JSONObject> jsonArray = JSON.parseArray(himmaInfo,JSONObject.class);
-        //计算收益 mss+tzs+ws+ywys+ywsh+jb
+        List<JSONObject> jsonArray = JSON.parseArray(json.getString("materialItems"), JSONObject.class);
+        //计算收益 mss+tzs+ws+ywys+windfall+money
         Double todayProfit = 0D;
-        for(JSONObject j:jsonArray){
+        //意外收获
+         Double windfall = json.getDouble("windfall");
+        //金币收益
+        Double moneyProfit = json.getDouble("endMoney") - json.getDouble("startMoney");
+        for (JSONObject j : jsonArray) {
             todayProfit += (j.getDouble("endValue") - j.getDouble("startValue")) * materialRepository.findOne(j.getInteger("materialId")).getPrice();
         }
-        himmaRecordDO.setProfit(todayProfit);
+        himmaRecordDO.setProfit(todayProfit + moneyProfit + windfall);
         HimmaDO himmaDO = himmaRepository.findOne(himmaId);
         //默认疲劳值为0
         himmaDO.setSurplusPl(0);
         himmaRecordRepository.save(himmaRecordDO);
-        return todayProfit;
+        return todayProfit + moneyProfit + windfall;
     }
 
     @Override
     public List<MaterialVO> getMaterialInfo() {
         List<MaterialDO> materialDOList = materialRepository.findAll();
         List<MaterialVO> materialVOList = new ArrayList<>();
-        for(MaterialDO m:materialDOList){
+        for (MaterialDO m : materialDOList) {
             MaterialVO materialVO = new MaterialVO();
             materialVO.setId(m.getId());
             materialVO.setName(m.getName());
@@ -137,6 +149,16 @@ public class HimmaServiceImpl implements HimmaService {
             materialVOList.add(materialVO);
         }
         return materialVOList;
+    }
+
+    @Override
+    public Boolean changeMaterialPrice(List<MaterialVO> materialVOList) {
+        for (MaterialVO m : materialVOList) {
+            MaterialDO materialDO = materialRepository.findOne(m.getId());
+            materialDO.setPrice(m.getPrice());
+            materialRepository.save(materialDO);
+        }
+        return true;
     }
 
 }

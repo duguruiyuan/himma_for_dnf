@@ -2,6 +2,7 @@ package com.goule666.himmaForDnf.repository;
 
 import com.goule666.himmaForDnf.model.domain.HimmaDO;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Component;
 

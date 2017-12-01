@@ -10,6 +10,8 @@ import com.goule666.himmaForDnf.enums.ResponseInfo;
 import com.goule666.himmaForDnf.utils.TokenUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
@@ -36,7 +38,12 @@ public class LoginController {
 
     @ApiOperation(value = "登录", notes = "根据用户名和密码登录并返回token")
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public Reply login(@ModelAttribute @Valid RequestLoginUser requestLoginUser) {
+    @ApiResponses({
+            @ApiResponse(code = 434, message = "账号不存在"),
+            @ApiResponse(code = 452, message = "黑名单"),
+            @ApiResponse(code = 438, message = "密码错误")
+    })
+    public Reply login(@RequestBody @Valid RequestLoginUser requestLoginUser) {
         UserDO userDO = userService.findByName(requestLoginUser.getUsername());
         Reply reply = checkAccount(requestLoginUser, userDO);
         if (reply != null) {

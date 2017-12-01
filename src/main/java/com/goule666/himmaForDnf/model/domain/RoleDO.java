@@ -1,6 +1,10 @@
 package com.goule666.himmaForDnf.model.domain;
 
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -10,11 +14,14 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "role")
+@EntityListeners(AuditingEntityListener.class)
 public class RoleDO {
     @Id
     @GeneratedValue
     private Integer id;
+    @CreationTimestamp
     private Date createdAt;
+    @UpdateTimestamp
     private Date updatedAt;
     /**
      * 角色名称

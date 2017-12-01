@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
@@ -23,6 +24,16 @@ import java.util.List;
 @ControllerAdvice
 class GlobalExceptionHandler {
     private static final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
+
+
+    //统一定义，如果发生了异常，返回500以及错误信息
+    @ExceptionHandler(value = Exception.class)
+    @ResponseBody
+    public Reply defaultErrorHandler(HttpServletRequest req, Exception e) throws Exception {
+        logger.error(req.getRequestURL() + "请求发生了异常，请根据错误信息进行处理，错误信息>>>>" + e);
+        e.printStackTrace();
+        return new Reply<>(e.getMessage(), ResponseInfo.SERVER_ERROR.getState());
+    }
 
     /**
      * bean校验未通过异常

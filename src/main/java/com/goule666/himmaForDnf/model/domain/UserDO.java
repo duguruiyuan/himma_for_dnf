@@ -1,6 +1,9 @@
 package com.goule666.himmaForDnf.model.domain;
 
 import io.swagger.annotations.ApiModel;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -11,12 +14,14 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "user")
-@ApiModel(discriminator = "啊啊啊啊")
+@EntityListeners(AuditingEntityListener.class)
 public class UserDO{
     @Id
     @GeneratedValue
     private Integer id;
+    @CreationTimestamp
     private Date createdAt;
+    @UpdateTimestamp
     private Date updatedAt;
     private String userName;
     private String password;
