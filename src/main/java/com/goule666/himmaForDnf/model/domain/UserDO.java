@@ -14,16 +14,15 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "user")
-@EntityListeners(AuditingEntityListener.class)
-public class UserDO{
-    @Id
-    @GeneratedValue
-    private Integer id;
-    @CreationTimestamp
-    private Date createdAt;
-    @UpdateTimestamp
-    private Date updatedAt;
+public class UserDO extends BaseDO{
+
+    /**
+     * 用户名
+     */
     private String userName;
+    /**
+     * 密码
+     */
     private String password;
     /**
      * 角色id
@@ -42,12 +41,12 @@ public class UserDO{
      */
     private String avatar;
 
-    public String getAvatar() {
-        return avatar;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPassword() {
@@ -82,56 +81,18 @@ public class UserDO{
         this.enable = enable;
     }
 
-    public UserDO(String userName, String password, Integer roleId, Date lastPasswordChange, Boolean enable) {
-        this.userName = userName;
-        this.password = password;
-        this.roleId = roleId;
-        this.lastPasswordChange = lastPasswordChange;
-        this.enable = enable;
+    public String getAvatar() {
+        return avatar;
     }
 
-    public UserDO() {
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public Date getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     @Override
     public String toString() {
         return "UserDO{" +
-                "id=" + id +
-                ", createdAt=" + createdAt +
-                ", updatedAt=" + updatedAt +
-                ", userName='" + userName + '\'' +
+                "userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
                 ", roleId=" + roleId +
                 ", lastPasswordChange=" + lastPasswordChange +

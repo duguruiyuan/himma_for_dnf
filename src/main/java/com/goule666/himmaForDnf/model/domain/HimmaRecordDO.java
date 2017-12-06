@@ -14,15 +14,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "himma_record")
-@EntityListeners(AuditingEntityListener.class)
-public class HimmaRecordDO{
-    @Id
-    @GeneratedValue
-    private Integer id;
-    @CreationTimestamp
-    private Date createdAt;
-    @UpdateTimestamp
-    private Date updatedAt;
+public class HimmaRecordDO extends BaseDO{
     /**
      * 搬砖工人id
      */
@@ -48,29 +40,6 @@ public class HimmaRecordDO{
      */
     private Double profit;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public Date getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
-    }
 
     public Integer getHimmaId() {
         return himmaId;
@@ -124,10 +93,7 @@ public class HimmaRecordDO{
     @Override
     public String toString() {
         return "HimmaRecordDO{" +
-                "id=" + id +
-                ", createdAt=" + createdAt +
-                ", updatedAt=" + updatedAt +
-                ", himmaId=" + himmaId +
+                "himmaId=" + himmaId +
                 ", startTime=" + startTime +
                 ", endTime=" + endTime +
                 ", timeUsed='" + timeUsed + '\'' +

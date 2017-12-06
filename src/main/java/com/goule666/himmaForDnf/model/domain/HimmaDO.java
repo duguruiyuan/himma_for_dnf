@@ -14,15 +14,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "himma")
-@EntityListeners(AuditingEntityListener.class)
-public class HimmaDO {
-    @Id
-    @GeneratedValue
-    private Integer id;
-    @CreationTimestamp
-    private Date createdAt;
-    @UpdateTimestamp
-    private Date updatedAt;
+public class HimmaDO extends BaseDO {
     /**
      * 用户id
      */
@@ -43,30 +35,6 @@ public class HimmaDO {
      * 状态 0：停用，1：启用
      */
     private Integer status;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public Date getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
-    }
 
     public Integer getUserId() {
         return userId;
@@ -111,10 +79,7 @@ public class HimmaDO {
     @Override
     public String toString() {
         return "HimmaDO{" +
-                "id=" + id +
-                ", createdAt=" + createdAt +
-                ", updatedAt=" + updatedAt +
-                ", userId=" + userId +
+                "userId=" + userId +
                 ", name='" + name + '\'' +
                 ", typeId=" + typeId +
                 ", surplusPl=" + surplusPl +

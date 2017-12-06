@@ -1,13 +1,7 @@
 package com.goule666.himmaForDnf.model.domain;
 
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
 import javax.persistence.*;
-import java.util.Date;
+import java.io.Serializable;
 
 /**
  * @author niewenlong
@@ -16,15 +10,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "material")
-@EntityListeners(AuditingEntityListener.class)
-public class MaterialDO {
-    @Id
-    @GeneratedValue
-    private Integer id;
-    @CreationTimestamp
-    private Date createdAt;
-    @UpdateTimestamp
-    private Date updatedAt;
+public class MaterialDO extends BaseDO implements Serializable {
     /**
      * 物品名称
      * eg:魔刹石
@@ -51,37 +37,10 @@ public class MaterialDO {
         this.price = price;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public Date getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
     @Override
     public String toString() {
         return "MaterialDO{" +
-                "id=" + id +
-                ", createdAt=" + createdAt +
-                ", updatedAt=" + updatedAt +
-                ", name='" + name + '\'' +
+                "name='" + name + '\'' +
                 ", price=" + price +
                 '}';
     }
