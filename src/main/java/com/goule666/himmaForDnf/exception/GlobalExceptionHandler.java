@@ -45,9 +45,9 @@ class GlobalExceptionHandler {
     @ExceptionHandler(value = BindException.class)
     @ResponseBody
     public Reply<List<FieldError>> validExceptionHandler(BindException e, WebRequest request, HttpServletResponse response) {
-        List<FieldError> fieldErrors=e.getBindingResult().getFieldErrors();
-        for (FieldError error:fieldErrors){
-            logger.error(error.getField()+":"+error.getDefaultMessage());
+        List<FieldError> fieldErrors = e.getBindingResult().getFieldErrors();
+        for (FieldError error : fieldErrors) {
+            logger.error(error.getField() + ":" + error.getDefaultMessage());
         }
         return new Reply<>(fieldErrors, ResponseInfo.INVALID_REQUEST.getState());
     }
