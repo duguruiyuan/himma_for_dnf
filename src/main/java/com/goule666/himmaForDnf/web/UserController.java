@@ -12,19 +12,21 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
+
 /**
  * @author niewenlong
- * @Date 2017/11/22 Time: 19:11
- * @Description 获取用户信息
+ * Date 2017/11/22 Time: 19:11
+ * Description 获取用户信息
  */
 @Api(tags = "用户接口")
 @RestController
 @RequestMapping(value = "/user")
 public class UserController {
 
-    @Autowired
+    @Resource
     private UserService userService;
-    @Autowired
+    @Resource
     private TokenUtils tokenUtils;
 
     @ApiOperation(value = "获取用户信息", notes = "登录完成之后返回用户信息")

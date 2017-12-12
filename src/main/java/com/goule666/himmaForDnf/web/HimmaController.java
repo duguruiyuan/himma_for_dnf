@@ -13,18 +13,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
  * @author niewenlong
- * @Date 2017/11/10 Time: 13:59
- * @Description
+ * Date 2017/11/10 Time: 13:59
+ * Description
  */
 @Api(tags = "搬砖接口")
 @RestController
 @RequestMapping(value = "/himma")
 public class HimmaController {
-    @Autowired
+    @Resource
     private HimmaService himmaService;
 
     @ApiOperation(value = "创建搬砖工", notes = "创建搬砖工人")

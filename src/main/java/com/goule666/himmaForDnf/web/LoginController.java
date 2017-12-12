@@ -12,16 +12,16 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import javax.validation.Valid;
 
 /**
- * @author niewenlong
- * @Date 2017/11/22 Time: 19:11
- * @Description 处理登录请求
+ * author niewenlong
+ * Date 2017/11/22 Time: 19:11
+ * Description 处理登录请求
  */
 @Api(tags = "登录接口")
 @RestController
@@ -30,10 +30,10 @@ public class LoginController {
     @Value("${token.header}")
     private String tokenHeader;
 
-    @Autowired
+    @Resource
     private TokenUtils tokenUtils;
 
-    @Autowired
+    @Resource
     private UserService userService;
 
     @ApiOperation(value = "登录", notes = "根据用户名和密码登录并返回token")
