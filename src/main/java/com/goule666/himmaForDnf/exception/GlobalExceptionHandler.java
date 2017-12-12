@@ -30,7 +30,7 @@ class GlobalExceptionHandler {
     @ExceptionHandler(value = Exception.class)
     @ResponseBody
     public Reply defaultErrorHandler(HttpServletRequest req, Exception e) throws Exception {
-        logger.error(req.getRequestURL() + "请求发生了异常，请根据错误信息进行处理，错误信息>>>>" + e);
+        logger.error(req.getRequestURL() + "请求发生异常，请及时处理，异常信息：", e);
         e.printStackTrace();
         return new Reply<>(e.getMessage(), ResponseInfo.SERVER_ERROR.getState());
     }
