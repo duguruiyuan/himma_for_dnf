@@ -3,12 +3,8 @@ package com.goule666.himmaForDnf.model.domain;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
-import javax.persistence.Version;
-import java.sql.Date;
-import java.sql.Timestamp;
+import javax.persistence.*;
+import java.util.Date;
 
 /**
  * @author niewenlong

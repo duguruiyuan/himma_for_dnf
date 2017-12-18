@@ -2,7 +2,6 @@ package com.goule666.himmaForDnf.model.domain;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -14,7 +13,14 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "himma_record")
-public class HimmaRecordDO extends BaseDO{
+public class HimmaRecordDO{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @CreationTimestamp
+    private Date createdAt;
+    @UpdateTimestamp
+    private Date updatedAt;
     /**
      * 搬砖工人id
      */
@@ -90,10 +96,37 @@ public class HimmaRecordDO extends BaseDO{
         this.profit = profit;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
     @Override
     public String toString() {
         return "HimmaRecordDO{" +
-                "himmaId=" + himmaId +
+                "id=" + id +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                ", himmaId=" + himmaId +
                 ", startTime=" + startTime +
                 ", endTime=" + endTime +
                 ", timeUsed='" + timeUsed + '\'' +
