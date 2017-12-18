@@ -1,5 +1,8 @@
 package com.goule666.himmaForDnf.web;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.goule666.himmaForDnf.model.Reply;
 import com.goule666.himmaForDnf.model.vo.himma.HimmaVO;
 import com.goule666.himmaForDnf.model.vo.himma.MaterialVO;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author niewenlong
@@ -63,8 +67,8 @@ public class HimmaController {
             @ApiImplicitParam(name = "himmaId", value = "搬砖工人id", required = true, dataType = "int", paramType = "query")})
     @RequestMapping(value = "/endHimma", method = RequestMethod.POST)
     @PreAuthorize(value = "hasAuthority('view')")
-    public Reply<Double> endHimma(@RequestParam("himmaInfo") String himmaInfo,
-                                  @RequestParam("himmaId") Integer himmaId) {
+    public Reply<Double> endHimma(@RequestParam(value = "himmaInfo") String himmaInfo,
+                                  @RequestParam(value = "himmaId") Integer himmaId) {
         return new Reply<>(himmaService.endHimma(himmaInfo, himmaId));
     }
 

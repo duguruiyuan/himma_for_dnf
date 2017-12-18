@@ -16,7 +16,7 @@
         </Console>
 
         <!--文件会打印出所有信息，这个log每次运行程序会自动清空，由append属性决定，这个也挺有用的，适合临时测试用-->
-        <File name="ALL_LOG" fileName="${logPath}/test.log" append="true">
+        <File name="ALL_LOG" fileName="${logPath}/log_all.log" append="false">
             <PatternLayout pattern="%-5level:%d{yyyy-MM-dd HH:mm:ss.SSS} %logger{36}:Line:%-3L - %msg%n"/>
         </File>
 
@@ -69,18 +69,33 @@
             <DefaultRolloverStrategy max="20" />
         </RollingFile>
 
-    </Appenders>
+        <!--设置级别为DEBUG日志输出到SQL.log中-->
+        <RollingFile name="SQL" filename="${logPath}/sql.log"
+                     filepattern="${logPath}/%d{yyyy-MM-dd}-%i-sql.log.zip">
+            <Filters>
+                <!--设置只输出级别为DEBUG的日志-->
+                <ThresholdFilter level="DEBUG" onMatch="DENY" onMismatch="NEUTRAL"/>
+            </Filters>
+            <PatternLayout pattern="%-5level:%d{yyyy-MM-dd HH:mm:ss.SSS} %logger{36}:Line:%-3L - %msg%n" />
+            <Policies>
+                <!--设置每天打包日志一次-->
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <!--设置日志文件满1MB后打包-->
+                <SizeBasedTriggeringPolicy size="20 MB" />
+            </Policies>
+            <DefaultRolloverStrategy max="20" />
+        </RollingFile>
 
+    </Appenders>
     <!--然后定义logger，只有定义了logger并引入的appender，appender才会生效-->
     <Loggers>
-        <!--过滤掉spring和mybatis的一些无用的DEBUG信息-->
-        <logger name="org.springframework" level="INFO"></logger>
-        <logger name="org.hibernate" level="INFO"></logger>
+        <logger name="org.springframework" level="INFO"/>
+        <logger name="org.hibernate" level="INFO"/>
         <root level="INFO" includeLocation="true">
-            <appender-ref ref="Console" />
-            <appender-ref ref="INFO" />
-            <appender-ref ref="WARN" />
-            <appender-ref ref="ERROR" />
+            <appender-ref ref="Console"/>
+            <appender-ref ref="INFO"/>
+            <appender-ref ref="WARN"/>
+            <appender-ref ref="ERROR"/>
             <appender-ref ref="ALL_LOG"/>
         </root>
     </Loggers>

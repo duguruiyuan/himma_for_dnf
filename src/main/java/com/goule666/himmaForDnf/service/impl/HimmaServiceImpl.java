@@ -46,7 +46,7 @@ public class HimmaServiceImpl implements HimmaService {
 
     @Override
     public List<HimmaRecordDO> findAll() {
-        return himmaRecordRepository.findAll();
+        return (List<HimmaRecordDO>)himmaRecordRepository.findAll();
     }
 
     @Override
