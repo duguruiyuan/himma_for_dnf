@@ -10,7 +10,7 @@ import java.sql.Date;
  */
 public class Test {
     public static void main(String[] args) {
-        Date a = new Date(15555555555L);
+        int a = 4 % 4;
         System.out.println(a);
     }
 }

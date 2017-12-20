@@ -16,12 +16,15 @@ import com.goule666.himmaForDnf.service.HimmaService;
 import com.goule666.himmaForDnf.service.UserService;
 import com.goule666.himmaForDnf.utils.TokenUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.Future;
 
 /**
  * @author niewenlong

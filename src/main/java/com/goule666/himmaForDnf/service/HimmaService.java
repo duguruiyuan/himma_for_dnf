@@ -5,6 +5,7 @@ import com.goule666.himmaForDnf.model.vo.himma.HimmaVO;
 import com.goule666.himmaForDnf.model.vo.himma.MaterialVO;
 
 import java.util.List;
+import java.util.concurrent.Future;
 
 /**
  * @author niewenlong
@@ -12,6 +13,8 @@ import java.util.List;
  * @Description
  */
 public interface HimmaService {
+
+
     List<HimmaRecordDO> findAll();
 
     /**
@@ -55,4 +58,5 @@ public interface HimmaService {
      * @return true or false
      */
     Boolean changeMaterialPrice(List<MaterialVO> materialVOList);
+
 }
