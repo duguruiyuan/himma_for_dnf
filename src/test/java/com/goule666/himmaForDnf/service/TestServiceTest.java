@@ -25,7 +25,7 @@ public class TestServiceTest {
         Long start = System.currentTimeMillis();
         List<Future<Integer>> futureList = new ArrayList<>();
         //创建10个任务
-        for (int i = 1; i <= 10; i++) {
+        for (int i = 0; i < 10; i++) {
             Future<Integer> future = testService.insertBatchThread();
             futureList.add(future);
         }
@@ -33,6 +33,7 @@ public class TestServiceTest {
         for (Future<Integer> f : futureList) {
             System.out.println(f.get());
         }
+        System.out.println(futureList.size());
         System.out.println("一共耗时：" + (System.currentTimeMillis() - start));
     }
 

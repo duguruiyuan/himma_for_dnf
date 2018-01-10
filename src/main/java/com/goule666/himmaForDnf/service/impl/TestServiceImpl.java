@@ -26,35 +26,33 @@ public class TestServiceImpl implements TestService {
     @Async
     @Override
     public Future<Integer> insertBatchThread() throws InterruptedException {
-        for (int i = 1; i < 1000; i++) {
-            List<HimmaRecordDO> himmaRecordDOList = new ArrayList<>();
-            for (int j = 1; j < 100; j++) {
-                HimmaRecordDO himmaRecordDO = new HimmaRecordDO();
-                himmaRecordDO.setStartTime(new Date());
-                himmaRecordDO.setEndTime(new Date());
-                int a = j % 4;
-                switch (a) {
-                    case 0:
-                        himmaRecordDO.setHimmaId(1);
-                        break;
-                    case 1:
-                        himmaRecordDO.setHimmaId(2);
-                        break;
-                    case 2:
-                        himmaRecordDO.setHimmaId(3);
-                        break;
-                    case 3:
-                        himmaRecordDO.setHimmaId(4);
-                    default:
-                        break;
-                }
-                himmaRecordDO.setHimmaInfo("a");
-                himmaRecordDO.setProfit(1D);
-                himmaRecordDO.setTimeUsed("b");
-                himmaRecordDOList.add(himmaRecordDO);
+        List<HimmaRecordDO> himmaRecordDOList = new ArrayList<>();
+        for (int j = 0; j < 1000000; j++) {
+            HimmaRecordDO himmaRecordDO = new HimmaRecordDO();
+            himmaRecordDO.setStartTime(new Date());
+            himmaRecordDO.setEndTime(new Date());
+            int a = j % 4;
+            switch (a) {
+                case 0:
+                    himmaRecordDO.setHimmaId(1);
+                    break;
+                case 1:
+                    himmaRecordDO.setHimmaId(2);
+                    break;
+                case 2:
+                    himmaRecordDO.setHimmaId(3);
+                    break;
+                case 3:
+                    himmaRecordDO.setHimmaId(4);
+                default:
+                    break;
             }
-            himmaRecordRepository.save(himmaRecordDOList);
+            himmaRecordDO.setHimmaInfo("a");
+            himmaRecordDO.setProfit(1D);
+            himmaRecordDO.setTimeUsed("b");
+            himmaRecordDOList.add(himmaRecordDO);
         }
+        himmaRecordRepository.save(himmaRecordDOList);
         return new AsyncResult<>(1);
     }
 }
