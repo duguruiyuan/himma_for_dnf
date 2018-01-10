@@ -24,7 +24,8 @@ public class TestServiceTest {
     public void dailyVolume() throws Exception {
         Long start = System.currentTimeMillis();
         List<Future<Integer>> futureList = new ArrayList<>();
-        //创建10个任务 0
+        //创建10个任务 3
+
 
         for (int i = 0; i < 10; i++) {
             Future<Integer> future = testService.insertBatchThread();
