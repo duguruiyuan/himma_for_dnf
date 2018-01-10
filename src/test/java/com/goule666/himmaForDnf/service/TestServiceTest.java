@@ -25,6 +25,7 @@ public class TestServiceTest {
         Long start = System.currentTimeMillis();
         List<Future<Integer>> futureList = new ArrayList<>();
         //创建10个任务 999
+
         for (int i = 0; i < 10; i++) {
             Future<Integer> future = testService.insertBatchThread();
             futureList.add(future);
