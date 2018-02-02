@@ -1,4 +1,4 @@
-package com.goule666.himmaForDnf.web;
+package com.goule666.himmaForDnf.threadTest;
 
 import com.goule666.himmaForDnf.model.domain.HimmaRecordDO;
 import com.goule666.himmaForDnf.repository.HimmaRecordRepository;
