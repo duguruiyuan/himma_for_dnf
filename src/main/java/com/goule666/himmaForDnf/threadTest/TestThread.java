@@ -1,6 +1,5 @@
 package com.goule666.himmaForDnf.threadTest;
 
-import org.springframework.context.ApplicationContext;
 
 /**
  * @author niewenlong
@@ -8,18 +7,26 @@ import org.springframework.context.ApplicationContext;
  * Description
  */
 public class TestThread implements Runnable {
+    private int ticket = 10;
 
-    private ApplicationContext applicationContext;
 
     @Override
     public void run() {
-        /*//从数据库读取票 然后卖出
-        TestService testService = (TestService) applicationContext.getBean("testService");
-        //开始卖票
-        Boolean flg = testService.saleTicket();
-        if(flg) {
-            System.out.println(Thread.currentThread().getName() + "卖出一张票");
-        }*/
+        while(ticket > 0){
+            synchronized (this){
+                if(ticket > 0){
+                    ticket--;
+                    try {
+                        Thread.sleep(10);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    System.out.println(Thread.currentThread().getName() + "正在卖票，还剩下" + ticket + "张");
+                }else {
+                    System.out.println("票已经卖完");
+                }
+            }
+        }
 
     }
 }
